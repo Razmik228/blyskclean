@@ -128,59 +128,42 @@ function sendMail1() {
 
 
 
+// ScrollMagic Scenes
+const controller = new ScrollMagic.Controller();
 
-var controller = new ScrollMagic.Controller();
+const scenes = [
+    { trigger: "#trigger1", target: "#reveal" },
+    { trigger: "#trigger2", target: "#reveal1" },
+    { trigger: "#trigger4", target: "#reveal4", offset: 100 },
+];
 
-var scene = new ScrollMagic.Scene({triggerElement: "#trigger1",
+scenes.forEach(({ trigger, target, offset = 0 }) => {
+    new ScrollMagic.Scene({ triggerElement: trigger, reverse: false, offset })
+        .setClassToggle(target, "visible")
+        .addTo(controller);
+});
 
-    reverse: false})
-    // trigger animation by adding a css class
-    .setClassToggle("#reveal", "visible")
+// PopUp functions
+$(document).ready(() => {
+    $("#popup1").hide();
+});
 
-    .addTo(controller);
+function PopUpShow() {
+    $("#popup1").show();
+}
 
-var scene2 = new ScrollMagic.Scene({triggerElement: "#trigger2",
+function PopUpHide() {
+    $("#popup1").hide();
+}
 
-    reverse: false})
-    // trigger animation by adding a css class
-    .setClassToggle("#reveal1", "visible")
-
-    .addTo(controller);
-
-var scene4 = new ScrollMagic.Scene({triggerElement: "#trigger4",
-    reverse: false,
-    offset: +100,})
-    // trigger animation by adding a css class
-    .setClassToggle("#reveal4", "visible")
-    .addTo(controller);
-
-
-    $(document).ready(function(){
-        PopUpHide();
-    });
-    function PopUpShow(){
-        $("#popup1").show();
-    }
-    function PopUpHide(){
-        $("#popup1").hide();
-    }
-
-
-
-
-
-
+// Image slider
 const images = document.querySelectorAll('.slider img');
 const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
 
 function showImage(index) {
-    images.forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-    });
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
+    images.forEach((img, i) => img.classList.toggle('active', i === index));
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
 }
 
 document.getElementById('next').addEventListener('click', () => {
@@ -200,104 +183,18 @@ dots.forEach((dot, i) => {
     });
 });
 
+// Smooth scrolling for elements with data-target
+function setupSmoothScrolling() {
+    document.querySelectorAll('[data-target]').forEach(el => {
+        el.addEventListener('click', function () {
+            const targetId = this.getAttribute('data-target');
+            const targetElement = document.querySelector(targetId);
 
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+}
 
-document.querySelector('.order1').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});
-document.querySelector('.order2').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});
-document.querySelector('.order3').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});
-document.querySelector('.order4').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});
-
-document.querySelector('.order5').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});
-
-document.querySelector('.order6').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});
-
-document.querySelector('.order7').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});
-
-document.querySelector('.order8').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});
-document.querySelector('.poslugi1').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});document.querySelector('.poslugi2').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});document.querySelector('.poslugi3').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});document.querySelector('.poslugi4').addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target'); // Отримуємо ID цільового блоку
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Плавна прокрутка
-    }
-});
-
-
+setupSmoothScrolling();
